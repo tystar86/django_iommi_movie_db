@@ -9,6 +9,8 @@ pre-commit = "*"
 [packages]
 django = "*"
 psycopg2 = "*"
+django-extensions = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.8"
@@ -18,3 +20,4 @@ runserver = "python manage.py runserver"
 test = "python manage.py test"
 makemigrations = "python manage.py makemigrations"
 migrate = "python manage.py migrate"
+shell_plus = "python manage.py shell_plus --ipython"
