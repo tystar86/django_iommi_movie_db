@@ -8,12 +8,18 @@ class Category(TimeStampedModel, models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "categories"
+
 
 class Country(TimeStampedModel, models.Model):
     name = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "countries"
 
 
 class Actor(TimeStampedModel, models.Model):
@@ -29,6 +35,10 @@ class Actor(TimeStampedModel, models.Model):
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
 
+    @property
+    def name(self):
+        return f"{self.last_name} {self.first_name}"
+
 
 class Director(TimeStampedModel, models.Model):
     first_name = models.CharField(max_length=250)
@@ -41,6 +51,10 @@ class Director(TimeStampedModel, models.Model):
     countries = models.ManyToManyField(Country)
 
     def __str__(self):
+        return f"{self.last_name} {self.first_name}"
+
+    @property
+    def name(self):
         return f"{self.last_name} {self.first_name}"
 
 
