@@ -8,6 +8,9 @@ class Category(TimeStampedModel, models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f"/categories/{self.id}"
+
     class Meta:
         verbose_name_plural = "categories"
 
@@ -17,6 +20,9 @@ class Country(TimeStampedModel, models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return f"/countries/{self.id}"
 
     class Meta:
         verbose_name_plural = "countries"
@@ -39,6 +45,9 @@ class Actor(TimeStampedModel, models.Model):
     def name(self):
         return f"{self.last_name} {self.first_name}"
 
+    def get_absolute_url(self):
+        return f"/actors/{self.id}"
+
 
 class Director(TimeStampedModel, models.Model):
     first_name = models.CharField(max_length=250)
@@ -57,6 +66,9 @@ class Director(TimeStampedModel, models.Model):
     def name(self):
         return f"{self.last_name} {self.first_name}"
 
+    def get_absolute_url(self):
+        return f"/directors/{self.id}"
+
 
 class Movie(TimeStampedModel, models.Model):
     title = models.CharField(max_length=250)
@@ -72,3 +84,6 @@ class Movie(TimeStampedModel, models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return f"/movies/{self.id}"

@@ -13,18 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from base.models import Actor, Category, Country, Director, Movie
+from base.views import (
+    IndexPage,
+    actor_page,
+    category_page,
+    country_page,
+    director_page,
+    movie_page,
+)
 from django.contrib import admin
 from django.urls import path
-
-from base.views import HomePage, DirectorTable, MoviesTable, ActorTable, actors_page
+from iommi import Table
 
 
 urlpatterns = [
-    path("", HomePage().as_view()),
-    # path('home/', home_view),
-    path("actors/", ActorTable().as_view()),
-    path("actors/<id>", actors_page),
-    path("directors/<name>", DirectorTable().as_view()),
-    path("movies/<name>", MoviesTable().as_view()),
+    path("", IndexPage().as_view()),
+    path("actors/", Table(auto__model=Actor).as_view()),
+    path("actors/<id>", actor_page),
+    path("directors/", Table(auto__model=Director).as_view()),
+    path("directors/<id>", director_page),
+    path("movies/", Table(auto__model=Movie).as_view()),
+    path("movies/<id>", movie_page),
+    path("categories/", Table(auto__model=Category).as_view()),
+    path("categories/<id>", category_page),
+    path("countries/", Table(auto__model=Country).as_view()),
+    path("countries/<id>", country_page),
     path("admin/", admin.site.urls),
 ]
